@@ -1,1 +1,1 @@
-# kosovo-universal-verifier
+# Universal Verifier
