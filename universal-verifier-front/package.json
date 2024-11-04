@@ -2,6 +2,7 @@
   "name": "universal-verifier",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/universal-verifier",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -16,6 +17,7 @@
     "babel-polyfill": "^6.26.0",
     "base-64": "^1.0.0",
     "buffer": "^6.0.3",
+    "express": "^4.21.1",
     "i18n-js": "^4.2.2",
     "i18next": "^22.4.9",
     "jso-2": "^1.0.0",
@@ -44,6 +46,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "server": "node server.js",
     "build": "react-scripts build",
     "test": "jest --watch --config=jest.config.js",
     "eject": "react-scripts eject"

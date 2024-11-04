@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: universal-verifier-front-deployment
+  labels:
+    app: universal-verifier-front
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: universal-verifier-front
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: universal-verifier-front
+    spec:
+      imagePullSecrets:
+        - name: pull-acr-kosovo
+      serviceAccountName: apps-vidchain
+      containers:
+        - image: k8scrvidchainpro.azurecr.io/kosovo/universal-verifier-front:latest
+          imagePullPolicy: "Always"
+          name: universal-verifier-front
+          ports:
+            - containerPort: 3000
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: universal-verifier-front-service
+  labels:
+    app: universal-verifier-front
+spec:
+  type: ClusterIP
+  ports:
+    - name: "9071"
+      port: 9071
+      targetPort: 3000
+  selector:
+    app: universal-verifier-front
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: universal-verifier-front-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - api-eid.rks-gov.net
+      secretName: wildcard-rks-gov
+  rules:
+    - host: api-eid.rks-gov.net
+      http:
+        paths:
+          - path: /universal-verifier
+            pathType: Prefix
+            backend:
+              service:
+                name: universal-verifier-front-service
+                port:
+                  number: 9071

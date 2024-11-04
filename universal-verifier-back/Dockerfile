@@ -10,10 +10,12 @@ FROM node:16.13-alpine3.14
 WORKDIR /usr/src/app
 COPY --from=builder node_modules node_modules
 COPY --from=builder dist dist
+COPY .env .env
 COPY package*.json ./
 RUN npm prune --production && \
   mkdir log && \
   chown -R node:node log
 USER node
 ENV NODE_ENV production
+EXPOSE 3001
 CMD [ "node", "dist/main.js" ]

@@ -7,8 +7,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/callback" element={<Callback />} />
+        <Route path="/universal-verifier" element={<Home />} />
+        <Route path="/universal-verifier/callback" element={<Callback />} />
       </Routes>
     </BrowserRouter>
   );
