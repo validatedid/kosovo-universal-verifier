@@ -24,7 +24,7 @@ spec:
         - name: pull-acr-kosovo
       serviceAccountName: apps-vidchain
       containers:
-        - image: k8scrvidchainpro.azurecr.io/kosovo/universal-verifier-back:latest
+        - image: k8scrvidchainstaging.azurecr.io/kosovo/universal-verifier-back:latest
           imagePullPolicy: 'Always'
           name: universal-verifier-back
           ports:
@@ -56,10 +56,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - api-eid.rks-gov.net
-      secretName: wildcard-rks-gov
+        - api.eid.kren-ks.eu
+      secretName: certificate-pre
   rules:
-    - host: api-eid.rks-gov.net
+    - host: api.eid.kren-ks.eu
       http:
         paths:
           - path: /universal-verifier/api

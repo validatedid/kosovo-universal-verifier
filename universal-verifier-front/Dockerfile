@@ -8,15 +8,15 @@ RUN apk add --update --no-cache \
 ## Stage 1: builder
 FROM base AS builder-front
 
-ENV REACT_APP_IDENTITY_PROVIDER=https://api-eid.rks-gov.net
-ENV REACT_APP_DEMO=https://api-eid.rks-gov.net
-ENV REACT_APP_BACKEND_URL=https://api-eid.rks-gov.net/universal-verifier/api
+ENV REACT_APP_IDENTITY_PROVIDER=https://api.eid.kren-ks.eu
+ENV REACT_APP_DEMO=https://api.eid.kren-ks.eu
+ENV REACT_APP_BACKEND_URL=https://api.eid.kren-ks.eu/universal-verifier/api
 # ENV REACT_APP_BACKEND_URL=http://localhost:3001
-ENV REACT_APP_REDIRECT_CALLBACK_LOGIN=https://api-eid.rks-gov.net/universal-verifier/callback
+ENV REACT_APP_REDIRECT_CALLBACK_LOGIN=https://api.eid.kren-ks.eu/universal-verifier/callback
 # ENV REACT_APP_REDIRECT_CALLBACK_LOGIN=http://localhost:3000/universal-verifier/callback
 ENV REACT_APP_OPENID_CLIENT_ID=universal-verifier
 ENV GENERATE_SOURCEMAP=false
-ENV PUBLIC_URL=https://api-eid.rks-gov.net/universal-verifier
+ENV PUBLIC_URL=https://api.eid.kren-ks.eu/universal-verifier
 # ENV PUBLIC_URL=http://localhost:3000/universal-verifier
 
 WORKDIR /usr/src/app
